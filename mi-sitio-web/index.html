@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Proyecto</title>
+</head>
+<body>
+
+    <!-- PANTALLA: INICIO DE SESIÓN -->
+    <div id="pantalla-login">
+        <h2>Iniciar Sesión</h2>
+        
+        <form onsubmit="event.preventDefault(); document.getElementById('pantalla-login').style.display='none'; document.getElementById('pantalla-menu').style.display='block';">
+            <div>
+                <label>Correo electrónico:</label>
+                <input type="email" placeholder="ejemplo@correo.com" required>
+            </div>
+            
+            <div>
+                <label>Contraseña:</label>
+                <input type="password" placeholder="Tu contraseña" required>
+            </div>
+            
+            <button type="submit">Ingresar</button>
+        </form>
+        
+    
+        <p>¿No tienes cuenta? <a href="#" onclick="event.preventDefault(); document.getElementById('pantalla-login').style.display='none'; document.getElementById('pantalla-registro').style.display='block';">Regístrate aquí</a></p>
+    </div>
+
+
+    <!-- PANTALLA: REGISTRO DE USUARIO (Oculta al inicio) -->
+    <div id="pantalla-registro" style="display: none;">
+        <h2>Crear Cuenta</h2>
+        
+        <!-- Al registrarse, simulamos el éxito enviando al usuario de vuelta al login -->
+        <form onsubmit="event.preventDefault(); alert('Cuenta creada con éxito'); document.getElementById('pantalla-registro').style.display='none'; document.getElementById('pantalla-login').style.display='block';">
+            <div>
+                <label>Nombre completo:</label>
+                <input type="text" placeholder="Tu nombre" required>
+            </div>
+
+            <div>
+                <label>Correo electrónico:</label>
+                <input type="email" placeholder="ejemplo@correo.com" required>
+            </div>
+            
+            <div>
+                <label>Contraseña:</label>
+                <input type="password" placeholder="Crea una contraseña" required>
+            </div>
+            
+            <button type="submit">Registrarse</button>
+        </form>
+        
+        <p>¿Ya tienes cuenta? <a href="#" onclick="event.preventDefault(); document.getElementById('pantalla-registro').style.display='none'; document.getElementById('pantalla-login').style.display='block';">Inicia sesión aquí</a></p>
+    </div>
+
+
+    <!-- PANTALLA: MENÚ PRINCIPAL -->
+    <div id="pantalla-menu" style="display: none;">
+        <h2>Panel de Gestión de Clientes</h2>
+        <p>Bienvenido al sistema. Desde aquí puedes administrar tu lista.</p>
+
+        <h3>Añadir Nuevo Cliente</h3>
+        <form onsubmit="agregarCliente(event)">
+            <div>
+                <label>Nombre completo:</label>
+                <input type="text" id="input-nombre" placeholder="Nombre del cliente" required>
+            </div>
+            <div>
+                <label>Correo electrónico:</label>
+                <input type="email" id="input-email" placeholder="correo@cliente.com" required>
+            </div>
+            <div>
+                <label>Teléfono (TC):</label>
+                <input type="tel" id="input-telefono" placeholder="Número de contacto" required>
+            </div>
+            <button type="submit">Añadir a la lista</button>
+        </form>
+
+        <hr>
+
+        <h3>Lista de Clientes Registrados</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Teléfono (TC)</th>
+                </tr>
+            </thead>
+
+            <tbody id="cuerpo-tabla">
+                <tr>
+                    <td>Ejemplo Nombre</td>
+                    <td>ejemplo@correo.com</td>
+                    <td>+506 0000-0000</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <br>
+        <button onclick="document.getElementById('pantalla-menu').style.display='none'; document.getElementById('pantalla-login').style.display='block';">Cerrar Sesión</button>
+    </div>
+
+
+    <script>
+        function agregarCliente(event) {
+            event.preventDefault();
+
+            const nombre = document.getElementById('input-nombre').value;
+            const email = document.getElementById('input-email').value;
+            const telefono = document.getElementById('input-telefono').value;
+
+            const tabla = document.getElementById('cuerpo-tabla');
+            const nuevaFila = document.createElement('tr');
+            
+            nuevaFila.innerHTML = `
+                <td>${nombre}</td>
+                <td>${email}</td>
+                <td>${telefono}</td>
+            `;
+
+            tabla.appendChild(nuevaFila);
+            event.target.reset();
+        }
+    </script>
+
+</body>
+</html>
