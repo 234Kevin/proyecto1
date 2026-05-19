@@ -2,21 +2,223 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Proyecto</title>
+    <title>Proyecto - CRM Completo</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: #334155;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #1e293b;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        h3 {
+            color: #475569;
+            margin: 25px 0 15px 0;
+            font-size: 18px;
+        }
+
+        p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .texto-enlace {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .campo-grupo {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 14px;
+            background-color: #ffffff;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .botones-grupo {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+
+        .btn-secundario {
+            background-color: #e2e8f0;
+            color: #475569;
+            margin-top: 15px;
+        }
+
+        .btn-secundario:hover {
+            background-color: #cbd5e1;
+        }
+
+        .btn-cancelar {
+            background-color: #64748b;
+        }
+        
+        .btn-cancelar:hover {
+            background-color: #475569;
+        }
+
+        .btn-accion {
+            padding: 6px 10px;
+            font-size: 12px;
+            width: auto;
+            margin-right: 5px;
+        }
+
+        .btn-editar {
+            background-color: #eab308;
+        }
+
+        .btn-editar:hover {
+            background-color: #ca8a04;
+        }
+
+        .btn-eliminar {
+            background-color: #ef4444;
+        }
+
+        .btn-eliminar:hover {
+            background-color: #dc2626;
+        }
+
+        .pantalla {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        #pantalla-menu.pantalla {
+            max-width: 800px;
+            text-align: left;
+        }
+
+        .barra-busqueda {
+            margin-bottom: 20px;
+        }
+
+        .contenedor-tabla {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin-top: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: #64748b;
+            font-weight: 600;
+            padding: 12px 16px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #334155;
+        }
+
+        tr:hover td {
+            background-color: #f8fafc;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #e2e8f0;
+            margin: 30px 0;
+        }
+    </style>
 </head>
 <body>
 
     <!-- PANTALLA: INICIO DE SESIÓN -->
-    <div id="pantalla-login">
+    <div id="pantalla-login" class="pantalla">
         <h2>Iniciar Sesión</h2>
         
         <form onsubmit="event.preventDefault(); document.getElementById('pantalla-login').style.display='none'; document.getElementById('pantalla-menu').style.display='block';">
-            <div>
+            <div class="campo-grupo">
                 <label>Correo electrónico:</label>
                 <input type="email" placeholder="ejemplo@correo.com" required>
             </div>
             
-            <div>
+            <div class="campo-grupo">
                 <label>Contraseña:</label>
                 <input type="password" placeholder="Tu contraseña" required>
             </div>
@@ -24,28 +226,26 @@
             <button type="submit">Ingresar</button>
         </form>
         
-    
-        <p>¿No tienes cuenta? <a href="#" onclick="event.preventDefault(); document.getElementById('pantalla-login').style.display='none'; document.getElementById('pantalla-registro').style.display='block';">Regístrate aquí</a></p>
+        <p class="texto-enlace">¿No tienes cuenta? <a href="#" onclick="event.preventDefault(); document.getElementById('pantalla-login').style.display='none'; document.getElementById('pantalla-registro').style.display='block';">Regístrate aquí</a></p>
     </div>
 
 
-    <!-- PANTALLA: REGISTRO DE USUARIO (Oculta al inicio) -->
-    <div id="pantalla-registro" style="display: none;">
+    <!-- PANTALLA: REGISTRO DE USUARIO -->
+    <div id="pantalla-registro" class="pantalla" style="display: none;">
         <h2>Crear Cuenta</h2>
         
-        <!-- Al registrarse, simulamos el éxito enviando al usuario de vuelta al login -->
         <form onsubmit="event.preventDefault(); alert('Cuenta creada con éxito'); document.getElementById('pantalla-registro').style.display='none'; document.getElementById('pantalla-login').style.display='block';">
-            <div>
+            <div class="campo-grupo">
                 <label>Nombre completo:</label>
                 <input type="text" placeholder="Tu nombre" required>
             </div>
 
-            <div>
+            <div class="campo-grupo">
                 <label>Correo electrónico:</label>
                 <input type="email" placeholder="ejemplo@correo.com" required>
             </div>
             
-            <div>
+            <div class="campo-grupo">
                 <label>Contraseña:</label>
                 <input type="password" placeholder="Crea una contraseña" required>
             </div>
@@ -53,78 +253,160 @@
             <button type="submit">Registrarse</button>
         </form>
         
-        <p>¿Ya tienes cuenta? <a href="#" onclick="event.preventDefault(); document.getElementById('pantalla-registro').style.display='none'; document.getElementById('pantalla-login').style.display='block';">Inicia sesión aquí</a></p>
+        <p class="texto-enlace">¿Ya tienes cuenta? <a href="#" onclick="event.preventDefault(); document.getElementById('pantalla-registro').style.display='none'; document.getElementById('pantalla-login').style.display='block';">Inicia sesión aquí</a></p>
     </div>
 
 
     <!-- PANTALLA: MENÚ PRINCIPAL -->
-    <div id="pantalla-menu" style="display: none;">
+    <div id="pantalla-menu" class="pantalla" style="display: none;">
         <h2>Panel de Gestión de Clientes</h2>
         <p>Bienvenido al sistema. Desde aquí puedes administrar tu lista.</p>
 
-        <h3>Añadir Nuevo Cliente</h3>
-        <form onsubmit="agregarCliente(event)">
-            <div>
+        <h3 id="titulo-formulario">Añadir Nuevo Cliente</h3>
+        <form id="form-cliente" onsubmit="guardarCliente(event)">
+            <!-- Campo oculto para saber si estamos editando -->
+            <input type="hidden" id="editando-id">
+            
+            <div class="campo-grupo">
                 <label>Nombre completo:</label>
                 <input type="text" id="input-nombre" placeholder="Nombre del cliente" required>
             </div>
-            <div>
+            <div class="campo-grupo">
                 <label>Correo electrónico:</label>
                 <input type="email" id="input-email" placeholder="correo@cliente.com" required>
             </div>
-            <div>
+            <div class="campo-grupo">
                 <label>Teléfono (TC):</label>
                 <input type="tel" id="input-telefono" placeholder="Número de contacto" required>
             </div>
-            <button type="submit">Añadir a la lista</button>
+            
+            <div class="botones-grupo">
+                <button type="submit" id="btn-submit">Añadir a la lista</button>
+                <button type="button" id="btn-cancelar" class="btn-cancelar" style="display: none;" onclick="limpiarFormulario()">Cancelar</button>
+            </div>
         </form>
 
         <hr>
 
         <h3>Lista de Clientes Registrados</h3>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Email</th>
-                    <th>Teléfono (TC)</th>
-                </tr>
-            </thead>
-
-            <tbody id="cuerpo-tabla">
-                <tr>
-                    <td>Ejemplo Nombre</td>
-                    <td>ejemplo@correo.com</td>
-                    <td>+506 0000-0000</td>
-                </tr>
-            </tbody>
-        </table>
         
-        <br>
-        <button onclick="document.getElementById('pantalla-menu').style.display='none'; document.getElementById('pantalla-login').style.display='block';">Cerrar Sesión</button>
+        <!-- BARRA DE BÚSQUEDA -->
+        <div class="campo-grupo barra-busqueda">
+            <input type="text" id="input-buscar" placeholder="🔍 Buscar cliente por nombre o correo..." oninput="buscarCliente()">
+        </div>
+
+        <div class="contenedor-tabla">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Teléfono (TC)</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo-tabla">
+                </tbody>
+            </table>
+        </div>
+        
+        <button class="btn-secundario" onclick="document.getElementById('pantalla-menu').style.display='none'; document.getElementById('pantalla-login').style.display='block';">Cerrar Sesión</button>
     </div>
 
 
     <script>
-        function agregarCliente(event) {
+        let listaClientes = [
+            { id: 1, nombre: "Carlos Mendoza", email: "carlos@mail.com", telefono: "+506 8888-8888" },
+            { id: 2, nombre: "Ana Gómez", email: "ana@mail.com", telefono: "+34 600 000 000" }
+        ];
+
+        // Dibuja la tabla en pantalla usando la información del array
+        function renderizarTabla(clientesAMostrar = listaClientes) {
+            const tabla = document.getElementById('cuerpo-tabla');
+            tabla.innerHTML = "";
+
+            if (clientesAMostrar.length === 0) {
+                tabla.innerHTML = `<tr><td colspan="4" style="text-align: center; color: #94a3b8;">No se encontraron resultados</td></tr>`;
+                return;
+            }
+
+            clientesAMostrar.forEach(cliente => {
+                const nuevaFila = document.createElement('tr');
+                nuevaFila.innerHTML = `
+                    <td><b>${cliente.nombre}</b></td>
+                    <td>${cliente.email}</td>
+                    <td>${cliente.telefono}</td>
+                    <td>
+                        <button class="btn-accion btn-editar" onclick="prepararEdicion(${cliente.id})">✏️ Editar</button>
+                        <button class="btn-accion btn-eliminar" onclick="eliminarCliente(${cliente.id})">🗑️ Borrar</button>
+                    </td>
+                `;
+                tabla.appendChild(nuevaFila);
+            });
+        }
+
+        function guardarCliente(event) {
             event.preventDefault();
 
+            const idEditando = document.getElementById('editando-id').value;
             const nombre = document.getElementById('input-nombre').value;
             const email = document.getElementById('input-email').value;
             const telefono = document.getElementById('input-telefono').value;
 
-            const tabla = document.getElementById('cuerpo-tabla');
-            const nuevaFila = document.createElement('tr');
-            
-            nuevaFila.innerHTML = `
-                <td>${nombre}</td>
-                <td>${email}</td>
-                <td>${telefono}</td>
-            `;
+            if (idEditando) {
+                const index = listaClientes.findIndex(c => c.id == idEditando);
+                listaClientes[index] = { id: parseInt(idEditando), nombre, email, telefono };
+            } else {
+                const nuevoCliente = { id: Date.now(), nombre, email, telefono };
+                listaClientes.push(nuevoCliente);
+            }
 
-            tabla.appendChild(nuevaFila);
-            event.target.reset();
+            limpiarFormulario();
+            renderizarTabla();
         }
+
+        function prepararEdicion(id) {
+            const cliente = listaClientes.find(c => c.id === id);
+            
+            document.getElementById('editando-id').value = cliente.id;
+            document.getElementById('input-nombre').value = cliente.nombre;
+            document.getElementById('input-email').value = cliente.email;
+            document.getElementById('input-telefono').value = cliente.telefono;
+
+            document.getElementById('titulo-formulario').innerText = "Modificar Datos del Cliente";
+            document.getElementById('btn-submit').innerText = "Guardar Cambios";
+            document.getElementById('btn-cancelar').style.display = "inline-block";
+        }
+
+        function eliminarCliente(id) {
+            if (confirm("¿Estás seguro de que deseas eliminar este cliente?")) {
+                listaClientes = listaClientes.filter(c => c.id !== id);
+                renderizarTabla();
+                limpiarFormulario();
+            }
+        }
+
+
+        function buscarCliente() {
+            const textoBusqueda = document.getElementById('input-buscar').value.toLowerCase();
+            
+            const filtrados = listaClientes.filter(cliente => 
+                cliente.nombre.toLowerCase().includes(textoBusqueda) || 
+                cliente.email.toLowerCase().includes(textoBusqueda)
+            );
+            
+            renderizarTabla(filtrados);
+        }
+
+        function limpiarFormulario() {
+            document.getElementById('form-cliente').reset();
+            document.getElementById('editando-id').value = "";
+            document.getElementById('titulo-formulario').innerText = "Añadir Nuevo Cliente";
+            document.getElementById('btn-submit').innerText = "Añadir a la lista";
+            document.getElementById('btn-cancelar').style.display = "none";
+        }
+
+        renderizarTabla();
     </script>
 
 </body>
